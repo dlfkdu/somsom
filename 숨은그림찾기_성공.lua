@@ -9,35 +9,25 @@ local scene = composer.newScene()
 
 function scene:create( event )
 	local sceneGroup = self.view
-	
-	-- Called when the scene's view does not exist.
-	-- 
-	-- INSERT code here to initialize the scene
-	-- e.g. add display objects to 'sceneGroup', add touch listeners, etc.
-	
-	-- create a white background to fill screen
-	local background = display.newRect( display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight )
-	background:setFillColor( 1 )	-- white
-	
-	-- create some text
-	local title = display.newText( "Second View", display.contentCenterX, 125, native.systemFont, 32 )
-	title:setFillColor( 0 )	-- black
 
-	local newTextParams = { text = "Loaded by the second tab's\n\"onPress\" listener\nspecified in the 'tabButtons' table", 
-							x = display.contentCenterX + 10, 
-							y = title.y + 215, 
-							width = 310, 
-							height = 310, 
-							font = native.systemFont, 
-							fontSize = 14, 
-							align = "center" }
-	local summary = display.newText( newTextParams )
-	summary:setFillColor( 0 ) -- black
+	local background= display.newImageRect("이미지/숨은그림찾기/white.png",1280,720)
+	background.x,background.y = display.contentWidth/2,display.contentHeight/2
+	sceneGroup:insert(background)
+
+	local hintText = display.newText("성공!",display.contentWidth*0.5, display.contentHeight*0.5,"font/NanumSquare_acB.ttf")
+	hintText:setFillColor(0)
+	hintText.size = 100
+	sceneGroup:insert(hintText)
+
+	local somsom = display.newImageRect("이미지/숨은그림찾기/솜솜이_성공.png",700,700)
+	somsom.x,somsom.y = display.contentWidth*0.84,display.contentHeight*0.6
+	sceneGroup:insert(somsom)
+
+	local t= display.newImageRect("이미지/숨은그림찾기/테두리.png",750,750)
+	t.x,t.y = display.contentWidth/2,display.contentHeight/2
+	sceneGroup:insert(t)
 	
-	-- all objects must be added to group (e.g. self.view)
-	sceneGroup:insert( background )
-	sceneGroup:insert( title )
-	sceneGroup:insert( summary )
+	
 end
 
 function scene:show( event )

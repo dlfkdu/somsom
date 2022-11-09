@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------------------
 --
--- view1.lua
+-- view2.lua
 --
 -----------------------------------------------------------------------------------------
 
@@ -9,34 +9,27 @@ local scene = composer.newScene()
 
 function scene:create( event )
 	local sceneGroup = self.view
+
+	local background= display.newImageRect("이미지/숨은그림찾기/white.png",1280,720)
+	background.x,background.y = display.contentWidth/2,display.contentHeight/2
+	sceneGroup:insert(background)
+
+	local t= display.newImageRect("이미지/숨은그림찾기/실패테두리.png",500,500)
+	t.x,t.y = display.contentWidth/2,display.contentHeight/2
+	sceneGroup:insert(t)
 	
-	-- Called when the scene's view does not exist.
-	-- 
-	-- INSERT code here to initialize the scene
-	-- e.g. add display objects to 'sceneGroup', add touch listeners, etc.
+
+	local hintText = display.newText("실패!",display.contentWidth*0.5, display.contentHeight*0.5,"font/NanumSquare_acB.ttf")
+	hintText:setFillColor(0)
+	hintText.size = 100
+	sceneGroup:insert(hintText)
 	
-	-- create a white background to fill screen
-	local background = display.newRect( display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight )
-	background:setFillColor( 1 )	-- white
-	
-	-- create some text
-	local title = display.newText( "First View", display.contentCenterX, 125, native.systemFont, 32 )
-	title:setFillColor( 0 )	-- black
-	
-	local newTextParams = { text = "Loaded by the first tab's\n\"onPress\" listener\nspecified in the 'tabButtons' table", 
-						x = display.contentCenterX + 10, 
-						y = title.y + 215, 
-						width = 310, height = 310, 
-						font = native.systemFont, fontSize = 14, 
-						align = "center" }
-	local summary = display.newText( newTextParams )
-	summary:setFillColor( 0 ) -- black
+	local somsom = display.newImageRect("이미지/숨은그림찾기/솜솜이_실패.png",800,800)
+	somsom.x,somsom.y = display.contentWidth*0.67,display.contentHeight*0.2
+	sceneGroup:insert(somsom)
+
 
 	
-	-- all objects must be added to group (e.g. self.view)
-	sceneGroup:insert( background )
-	sceneGroup:insert( title )
-	sceneGroup:insert( summary )
 end
 
 function scene:show( event )
